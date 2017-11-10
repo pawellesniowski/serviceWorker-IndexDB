@@ -28,3 +28,17 @@ dbPromise
   .then(function() {
     console.log("Addded bar:foo to keyval");
   });
+
+
+// TODO: in the keyval store, set
+// "favoriteAnimal" to your favourite animal
+// eg "cat" or "dog"
+  dbPromise.then(function(db) {
+    var tx = db.transaction("keyval", "readwrite");
+    var keyValStore = tx.objectStore("keyval");
+    keyValStore.put("favoriteAnimal", "cat");
+    return tx.complete;
+})
+.then(function() {
+    console.log("Added favoriteAnimal:Cat to kayval");
+});
